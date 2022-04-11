@@ -1,0 +1,27 @@
+# Starter pipeline
+
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+# steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
+
+stages:
+  - stage: UAT
+    jobs:
+      - job: Execute_Tests
+        steps:  
+        - checkout: self
+          clean: true
+
+  - stage: PreProd    
+    jobs:
+      - job: Execute_Tests
+        steps:  
+        - checkout: self
+          clean: true   
